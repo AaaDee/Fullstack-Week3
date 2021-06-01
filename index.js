@@ -6,7 +6,7 @@ const app = express()
 
 
 app.use(cors())
-
+app.use(express.static('build'))
 app.use(express.json())
 
 morgan.token('content', function getId (req) {
