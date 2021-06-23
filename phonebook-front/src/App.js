@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import phonebookService from './services/persons'
 import './index.css'
 
+
 const Filter = ({filter, handleFilterChange}) => {
   return(
     <div>filter shown with <input value={filter} onChange={handleFilterChange}/></div>
@@ -153,6 +154,15 @@ const App = () => {
           setTimeout(() => {
             setMessage(null)
           }, 5000)
+      })
+      .catch(error => {
+        console.log(error.response)
+        setErrorMessage(
+          error.response.data.error
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
     }
   }
