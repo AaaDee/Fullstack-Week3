@@ -1,4 +1,3 @@
-const { json } = require('express')
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -11,7 +10,7 @@ app.use(express.static('build'))
 app.use(express.json())
 
 morgan.token('content', function getId (req) {
-  if (req.method != "POST") return ""
+  if (req.method != 'POST') return ''
   return JSON.stringify(req.body)
 })
 
@@ -19,14 +18,14 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms :c
 
 
 const errorHandler = (error, request, response, next) => {
-  console.log("Handling errors")
+  console.log('Handling errors')
   console.error(error.message)
   
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
   } else if (error.name === 'ValidationError') {
-    console.log("Validation error found")
+    console.log('Validation error found')
     return response.status(400).json({ error: error.message })
   }
 
@@ -45,14 +44,14 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/info', (req, res) => {   
-    Person.find({}).then(persons => {
-      const numOfPersons = persons.length
-      res.send(
-        `<p>Phonebook has info for ${numOfPersons} people</p>` +
-        `${new Date()}`
-        )
-    })
+  Person.find({}).then(persons => {
+    const numOfPersons = persons.length
+    res.send(
+      `<p>Phonebook has info for ${numOfPersons} people</p>` +
+      `${new Date()}`
+    )
   })
+})
 
 
 app.post('/api/persons', (request, response, next) => {
@@ -72,8 +71,8 @@ app.post('/api/persons', (request, response, next) => {
   }
 
   const person =  new Person ({
-      name: body.name,
-      number: body.number,
+    name: body.name,
+    number: body.number,
   })
   
   person.save()
@@ -82,7 +81,7 @@ app.post('/api/persons', (request, response, next) => {
       response.json(savedAndFormattedPerson)
     }) 
     .catch(error => {
-      console.log("Error here")
+      console.log('Error here')
       console.log(error.name)
       console.log(error.message)
       next(error)
@@ -98,9 +97,9 @@ app.get('/api/persons/:id', (request, response, next) => {
       response.status(404).end()
     }
   })
-  .catch(error => {
-    console.log("GetPersonError")
-    next(error)
+    .catch(error => {
+      console.log('GetPersonError')
+      next(error)
     })
 })
 
@@ -116,7 +115,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     Person.findByIdAndUpdate(request.params.id, person, { new: true }).then(person => {
       response.json(person)
     })
-    .catch(error => next(error))
+      .catch(error => next(error))
   } else {
     response.status(404).end()
   }
@@ -124,9 +123,9 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndRemove(request.params.id)
-    .then(result => {
+    .then(
       response.status(204).end()
-    })
+    )
     .catch(error => next(error))
 })
 

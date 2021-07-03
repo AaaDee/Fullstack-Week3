@@ -21,4 +21,6 @@ const deletePerson = (id) => {
 
 }
 
-export default {getAll, create, update, deletePerson}
+const exportedObject = {getAll, create, update, deletePerson}
+
+export default exportedObject
