@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import phonebookService from './services/persons'
+import React, { useEffect, useState } from 'react'
 import './index.css'
+import phonebookService from './services/persons'
 
 
 const Filter = ({filter, handleFilterChange}) => {
@@ -12,9 +12,9 @@ const Filter = ({filter, handleFilterChange}) => {
 const PersonForm = ({addName, newName, newNumber, handleNameChange, handleNumberChange}) => {
   return(
     <form onSubmit = {addName}>
-        <div>name: <input value={newName} onChange={handleNameChange}/></div>
-        <div>number: <input value={newNumber} onChange={handleNumberChange}/></div>
-        <div><button type="submit">add</button></div>
+      <div>name: <input value={newName} onChange={handleNameChange}/></div>
+      <div>number: <input value={newNumber} onChange={handleNumberChange}/></div>
+      <div><button type="submit">add</button></div>
     </form>
   )
 }
@@ -35,7 +35,7 @@ const Persons = ({persons, filter, setPersons, setMessage}) => {
 
 const DeleteButton = ({person, persons, setPersons, setMessage}) => {
   const SendDeleteRequest = () => {
-    const result = window.confirm(`Delete ${person.name}`);
+    const result = window.confirm(`Delete ${person.name}`)
     if (!result) return
 
     const id = persons
@@ -118,28 +118,29 @@ const App = () => {
       if (!result) return
 
       const id = persons
-      .find(p => p.name === person.name)
-      .id
+        .find(p => p.name === person.name)
+        .id
 
       phonebookService
-      .update(id, person)
-      .then(updatedPerson => {
-        setPersons(persons.map(p => p.id !== id ? p : updatedPerson))
-        setNewName('')
-        setNewNumber('')
-        setMessage(
-          `Updated ${person.name}`
-        )
-        setTimeout(() => {
-          setMessage(null)
-        }, 5000)
-      })
-      .catch(error =>{
-        setErrorMessage(`${person.name} has already been deleted`)
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      })
+        .update(id, person)
+        .then(updatedPerson => {
+          setPersons(persons.map(p => p.id !== id ? p : updatedPerson))
+          setNewName('')
+          setNewNumber('')
+          setMessage(
+            `Updated ${person.name}`
+          )
+          setTimeout(() => {
+            setMessage(null)
+          }, 5000)
+        })
+        // eslint-disable-next-line no-unused-vars
+        .catch(error => {
+          setErrorMessage(`${person.name} has already been deleted`)
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
 
     } else {
       phonebookService
@@ -154,16 +155,16 @@ const App = () => {
           setTimeout(() => {
             setMessage(null)
           }, 5000)
-      })
-      .catch(error => {
-        console.log(error.response)
-        setErrorMessage(
-          error.response.data.error
-        )
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
-      })
+        })
+        .catch(error => {
+          console.log(error.response)
+          setErrorMessage(
+            error.response.data.error
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
     }
   }
   

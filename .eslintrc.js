@@ -2,11 +2,19 @@ module.exports = {
   'env': {
     'node': true,
     'commonjs': true,
-    'es2021': true
+    'es2021': true,
+    'browser': true,
+    'jest': true
   },
-  'extends': 'eslint:recommended',
+  'extends': [
+    'plugin:react/recommended',
+    'eslint:recommended'],
   'parserOptions': {
-    'ecmaVersion': 12
+    'ecmaVersion': 2020,
+    'sourceType': 'module',
+    'ecmaFeatures': {
+      'jsx': true
+    }
   },
   'rules': {
     'indent': [
@@ -24,6 +32,7 @@ module.exports = {
     'semi': [
       'error',
       'never'
-    ]
+    ],
+    'react/prop-types': 'off'
   }
 }
