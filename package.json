@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "dev": "nodemon index.js", 
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf build && cd phonebook-front && npm run build --prod && cp -r build ..",
+    "build": "rm -rf build && cd phonebook-front && npm run build --prod && cp -r build ..",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
