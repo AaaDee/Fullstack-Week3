@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './index.css'
 import phonebookService from './services/persons'
+import { PersonForm } from './components/PersonForm'
 
 
 const Filter = ({filter, handleFilterChange}) => {
@@ -9,15 +10,6 @@ const Filter = ({filter, handleFilterChange}) => {
   )
 }
 
-const PersonForm = ({addName, newName, newNumber, handleNameChange, handleNumberChange}) => {
-  return(
-    <form onSubmit = {addName}>
-      <div>name: <input value={newName} onChange={handleNameChange}/></div>
-      <div>number: <input value={newNumber} onChange={handleNumberChange}/></div>
-      <div><button type="submit">add</button></div>
-    </form>
-  )
-}
 
 const Persons = ({persons, filter, setPersons, setMessage}) => {
   const filteredPersons = persons.filter(person => person.name.includes(filter))

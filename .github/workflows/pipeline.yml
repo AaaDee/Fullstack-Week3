@@ -28,8 +28,8 @@ jobs:
         run: npm run lint
       - name: build
         run: npm run build
-  #     - name: test
-  #       run: npm run test
+      - name: test frontend
+        run: npm run test "./phonebook-front" 
   #     - name: e2e tests
   #       uses: cypress-io/github-action@v4
   #       with:
