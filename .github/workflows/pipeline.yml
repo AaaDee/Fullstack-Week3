@@ -31,12 +31,8 @@ jobs:
       - name: test frontend
         run: npm run test
         working-directory: "./phonebook-front"  
-  #     - name: e2e tests
-  #       uses: cypress-io/github-action@v4
-  #       with:
-  #         build: npm run build
-  #         start: npm run start-prod
-  #         wait-on: http://localhost:5000
+      - name: e2e tests
+        uses: cypress-io/github-action@v4
   #     - name: deploy
   #       if: ${{ github.event_name == 'push' }}
   #       run: flyctl deploy --remote-only
