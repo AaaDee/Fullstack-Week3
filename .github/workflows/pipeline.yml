@@ -37,7 +37,7 @@ jobs:
           project: ./phonebook-front
           build: npm run build
           start: npm run start
-          wait-on: http://localhost:3001
+          wait-on: http://localhost:3000
   #     - name: deploy
   #       if: ${{ github.event_name == 'push' }}
   #       run: flyctl deploy --remote-only
