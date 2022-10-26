@@ -21,7 +21,9 @@ jobs:
         with:
           node-version: '16'
       - name: npm install 
-        run: npm install  
+        run: |
+          npm install
+          npm install "./phonebook-front"  
       - name: lint
         run: npm run lint
       - name: build
