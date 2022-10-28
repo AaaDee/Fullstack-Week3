@@ -54,6 +54,11 @@ app.get('/info', (req, res) => {
 })
 
 
+app.get('/health', (req, res) => {
+  res.send('ok')
+})
+
+
 app.post('/api/persons', (request, response, next) => {
   const body = request.body
   console.log(request.headers)
