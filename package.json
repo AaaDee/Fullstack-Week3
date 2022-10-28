@@ -10,6 +10,9 @@
     "build": "rm -rf build && cd phonebook-front && npm run build --prod && cp -r build ..",
     "lint": "eslint ."
   },
+  "engines" : { 
+    "node" : "16.15.1" 
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
