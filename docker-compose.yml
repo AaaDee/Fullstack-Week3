@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    image: hello-front-dev
+    build:
+      context: ./phonebook-front
+      dockerfile: Dockerfile
+    volumes:
+      - ./phonebook-front:/usr/src/app
+    ports:
+      - 3000:3000
+    container_name: hello-front-dev
+  server:
+    image: express-server
+    build:
+      context: ./phonebook-back
+      dockerfile: Dockerfile
+    volumes:
+      - ./phonebook-back/:/usr/src/app
+    ports:
+      - 3001:3001
+    environment: 
+      - MONGODB_URI=mongodb+srv://<user>:<password>@fullstack-phonebook.j8pty.mongodb.net/test?retryWrites=true&w=majority
+
